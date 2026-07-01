@@ -47,9 +47,10 @@ console.log("Body:", req.body);
     const result = await analyzePCB(image);
 
     // Save to DB
+    // Save to DB
     await Analysis.create({
       user: req.user?.id || null,
-      image: image.filename,
+      image: image.filename || image.originalname,
       result,
     });
 
