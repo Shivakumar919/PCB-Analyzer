@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 import pcbImg from "../assets/loginsignupimg.png";
-import { signup } from "../services/authService";
+import { signup } from "../services/authservice.js";
 
 export default function Signup() {
   const navigate = useNavigate();
