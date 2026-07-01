@@ -2,13 +2,10 @@ import fs from "fs";
 import path from "path";
 import Analysis from "../models/analysis.js";
 import { analyzePCB } from "../services/geminiser.js";
-
+console.log("✅ analyzeImage controller started");
 export const analyzeImage = async (req, res) => {
   try {
     let image;
-
-
-
     // Case 1: Uploaded file
     if (req.file) {
       image = req.file;
@@ -43,6 +40,8 @@ export const analyzeImage = async (req, res) => {
         message: "Please upload or select a PCB image",
       });
     }
+    console.log("File:", req.file);
+console.log("Body:", req.body);
 
     // Gemini Analysis
     const result = await analyzePCB(image);

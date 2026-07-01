@@ -10,6 +10,10 @@ router.post(
   "/analyze",
   auth,
   upload.single("image"),
+  (req, res, next) => {
+    console.log("✅ /api/analyze route reached");
+    next();
+  },
   analyzeImage
 );
 
