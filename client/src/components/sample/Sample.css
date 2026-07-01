@@ -1,0 +1,60 @@
+.sample-library {
+  margin-top: 30px;
+}
+
+.sample-library h2 {
+  margin-bottom: 5px;
+}
+
+.sample-text {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.sample-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sample-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.sample-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.sample-card h4 {
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.sample-btn {
+  width: 90%;
+  margin: 10px auto 15px;
+  display: block;
+  padding: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sample-btn:hover {
+  background: #1d4ed8;
+}

@@ -1,0 +1,98 @@
+.layout{
+    display:flex;
+    min-height:100vh;
+    background:#111827;
+}
+
+/* Main */
+
+.main-content{
+    flex:1;
+    margin-left:90px;
+    padding:30px 40px;
+    max-width:1200px;
+}
+
+/* Title */
+
+.title{
+    color:#fff;
+    font-size:2.5rem;
+    margin-bottom:25px;
+}
+
+/* Analyze */
+
+.analyze-btn{
+    display:block;
+    margin:25px auto;
+    padding:14px 30px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.analyze-btn:hover{
+    background:#1d4ed8;
+}
+
+.analyze-btn:disabled{
+    opacity:.6;
+}
+
+/* Analysis Header */
+
+.analysis-header{
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.download-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* Chat */
+
+.chat-section{
+    margin-top:45px;
+}
+
+.chat-section h2{
+    color:white;
+    margin-bottom:6px;
+}
+
+.chat-subtitle{
+    color:#b6c3d6;
+    margin-bottom:22px;
+}
+
+.thinking{
+    margin:18px 0;
+    color:#60a5fa;
+}
+
+@media(max-width:900px){
+
+.main-content{
+    margin-left:90px;
+    padding:20px;
+}
+
+.analysis-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+}
