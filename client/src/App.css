@@ -1,13 +1,131 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 1024px) {
+
+  .container,
+  .home-container {
+    width: 100%;
+    padding: 0 25px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero-right img,
+  .hero-image img {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .features,
+  .about,
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-body,
-html,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+/* Mobile */
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .auth-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero img,
+  .hero-right img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+  }
+
+  .features,
+  .cards,
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section {
+    padding: 40px 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .logo img {
+    width: 45px;
+  }
+
+  .hero img {
+    max-width: 280px;
+  }
+
+  .btn,
+  button {
+    padding: 12px;
+    font-size: 15px;
+  }
 }
