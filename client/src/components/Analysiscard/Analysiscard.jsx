@@ -65,6 +65,10 @@ export default function AnalysisCard({ analysis }) {
 
       {/* Missing Components */}
 
+    {/* Missing Components */}
+
+    {/* Missing Components */}
+
       <div className="analysis-section">
 
         <h3>Missing Components</h3>
@@ -75,7 +79,11 @@ export default function AnalysisCard({ analysis }) {
 
             {analysis.missingComponents.map((item, index) => (
 
-              <li key={index}>{item}</li>
+              <li key={index}>
+                {typeof item === "string"
+                  ? item
+                  : `${item.designator ?? ""} ${item.type ?? ""} ${item.value ?? ""}`.trim()}
+              </li>
 
             ))}
 
@@ -90,6 +98,7 @@ export default function AnalysisCard({ analysis }) {
       </div>
 
       {/* Faults */}
+{/* Faults */}
 
       <div className="analysis-section">
 
@@ -101,7 +110,11 @@ export default function AnalysisCard({ analysis }) {
 
             {analysis.faults.map((item, index) => (
 
-              <li key={index}>{item}</li>
+              <li key={index}>
+                {typeof item === "string"
+                  ? item
+                  : `${item.designator ?? ""} ${item.type ?? ""} ${item.value ?? ""}`.trim()}
+              </li>
 
             ))}
 
