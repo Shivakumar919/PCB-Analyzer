@@ -1,0 +1,63 @@
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #00d4ff;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 220px;
+    background: #071321;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 90px 25px;
+    gap: 25px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.4);
+  }
+
+  .navbar-right.open {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 18px !important;
+  }
+
+  .nav-buttons {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 12px !important;
+  }
+}

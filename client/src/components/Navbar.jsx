@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from  "../assets/logoo.png"
+import logo from "../assets/logoo.png";
+import "./navbar.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const styles = {
     navbar: {
       display: "flex",
@@ -13,12 +17,6 @@ export default function Navbar() {
       position: "sticky",
       top: 0,
       zIndex: 1000,
-    },
-
-    left: {
-      display: "flex",
-      alignItems: "center",
-      gap: "35px",
     },
 
     logo: {
@@ -44,7 +42,7 @@ export default function Navbar() {
 
     buttons: {
       display: "flex",
-      alignItems:"centre",
+      alignItems: "center",
       gap: "12px",
     },
 
@@ -87,56 +85,57 @@ export default function Navbar() {
     },
   };
 
-return (
-  <nav style={styles.navbar}>
-    {/* Logo */}
-    <Link to="/" style={styles.logo}>
-      <img
-        src={logo}
-        alt="PCB Analyzer AI"
-        style={styles.logoImage}
-      />
-      <h2 style={styles.title}>PCB Analyzer AI</h2>
-    </Link>
+  return (
+    <nav style={styles.navbar}>
+      {/* Logo */}
+      <Link to="/" style={styles.logo}>
+        <img src={logo} alt="PCB Analyzer AI" style={styles.logoImage} />
+        <h2 style={styles.title}>PCB Analyzer AI</h2>
+      </Link>
 
-    {/* Navigation + Buttons */}
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "30px",
-      }}
-    >
-      <ul style={styles.navLinks}>
-        <li>
-          <a href="#home" style={styles.link}>
-            Home
-          </a>
-        </li>
+      {/* Hamburger button (mobile only) */}
+      <button
+        className="hamburger"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <li>
-          <a href="#features" style={styles.link}>
-            Features
-          </a>
-        </li>
+      {/* Navigation + Buttons */}
+      <div className={`navbar-right ${menuOpen ? "open" : ""}`}>
+        <ul className="nav-links" style={styles.navLinks}>
+          <li>
+            <a href="#home" style={styles.link} onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
+          </li>
 
-        <li>
-          <a href="#about" style={styles.link}>
-            About
-          </a>
-        </li>
-      </ul>
+          <li>
+            <a href="#features" style={styles.link} onClick={() => setMenuOpen(false)}>
+              Features
+            </a>
+          </li>
 
-      <div style={styles.buttons}>
-        <Link style={styles.login} to="/login">
-          Login
-        </Link>
+          <li>
+            <a href="#about" style={styles.link} onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+          </li>
+        </ul>
 
-        <Link style={styles.signup} to="/signup">
-          Sign Up
-        </Link>
+        <div className="nav-buttons" style={styles.buttons}>
+          <Link style={styles.login} to="/login" onClick={() => setMenuOpen(false)}>
+            Login
+          </Link>
+
+          <Link style={styles.signup} to="/signup" onClick={() => setMenuOpen(false)}>
+            Sign Up
+          </Link>
+        </div>
       </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
 }
