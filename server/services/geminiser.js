@@ -7,7 +7,7 @@ export const analyzePCB = async (file) => {
       apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const imageBytes = fs.readFileSync(file.path);
+   const imageBytes = file.buffer;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
