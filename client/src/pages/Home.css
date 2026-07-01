@@ -418,44 +418,128 @@ grid-template-columns:repeat(2,1fr);
 
 }
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-.site-nav{
+  html,
+  body {
+    overflow-x: hidden;
+  }
 
-flex-direction:column;
+  .site-nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+  }
 
-gap:20px;
+  .site-nav__brand {
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.2;
+  }
 
+  .site-nav__links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .site-nav__link {
+    font-size: 15px;
+  }
+
+  .site-nav__button {
+    width: 140px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 140px 20px 60px;
+    text-align: center;
+  }
+
+  .hero__content {
+    margin: auto;
+    max-width: 100%;
+  }
+
+  .hero__content h1 {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+
+  .hero__content p {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 220px;
+  }
+
+  .feature-band {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .feature-band__text h2 {
+    font-size: 32px;
+  }
+
+  .steps {
+    padding: 60px 20px;
+  }
+
+  .steps h2 {
+    font-size: 32px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 25px 20px;
+    text-align: center;
+  }
 }
+@media (max-width: 480px) {
 
-.hero__content h1{
+  .site-nav__brand {
+    font-size: 24px;
+  }
 
-font-size:42px;
+  .site-nav__links {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-}
+  .site-nav__button {
+    width: 100%;
+    max-width: 180px;
+  }
 
-.hero-buttons{
+  .hero__content h1 {
+    font-size: 30px;
+  }
 
-flex-direction:column;
+  .hero__content p {
+    font-size: 15px;
+  }
 
-}
-
-.steps-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.feature-band__text h2{
-
-font-size:36px;
-
-}
-
-.steps h2{
-
-font-size:36px;
-
-}
-
+  .feature-band__text h2,
+  .steps h2 {
+    font-size: 28px;
+  }
 }
