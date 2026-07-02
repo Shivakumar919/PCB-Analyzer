@@ -14,7 +14,7 @@ color:white;
 
 }
 
-.analysis-header{
+.analysis-card-header{
 
 display:flex;
 
@@ -24,9 +24,13 @@ align-items:center;
 
 margin-bottom:30px;
 
+flex-wrap:wrap;
+
+gap:12px;
+
 }
 
-.analysis-header h2{
+.analysis-card-header h2{
 
 font-size:30px;
 
@@ -100,4 +104,61 @@ color:#d6e4ff;
 
 margin-bottom:10px;
 
+}
+
+/* ============================
+   Tablet
+   ============================ */
+@media (max-width: 900px) {
+  .analysis-card {
+    padding: 22px;
+  }
+}
+
+/* ============================
+   Phones
+   ============================ */
+@media (max-width: 480px) {
+  .analysis-card {
+    padding: 16px;
+    border-radius: 14px;
+    margin-top: 20px;
+  }
+
+  .analysis-card-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .analysis-section {
+    margin-bottom: 20px;
+  }
+
+  .analysis-section h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .analysis-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .component-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .component-item {
+    padding: 12px;
+  }
+
+  .analysis-section ul {
+    padding-left: 18px;
+    font-size: 0.9rem;
+  }
 }

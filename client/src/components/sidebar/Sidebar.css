@@ -74,6 +74,9 @@
     border-radius:10px;
     margin-bottom:8px;
     transition:.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .history-item:hover{
@@ -144,18 +147,82 @@
     border-radius:20px;
 }
 
-/* Responsive */
+/* ============================
+   Responsive - Tablet (icon rail, text still readable-ish)
+   ============================ */
+@media (max-width: 900px) {
 
-@media(max-width:900px){
+  .sidebar{
+      width:90px;
+      padding:15px;
+  }
 
-.sidebar{
-    width:90px;
-    padding:15px;
+  .sidebar-logo h2{
+      font-size:18px;
+  }
+
+  .new-analysis{
+      font-size:0;
+  }
+
+  .new-analysis::before{
+      content:"+";
+      font-size:24px;
+  }
+
+  .section-title{
+      display:none;
+  }
+
+  .history-item{
+      font-size:0;
+      text-align:center;
+  }
+
+  .history-item::before{
+      content:"📄";
+      font-size:18px;
+  }
+
+  .menu-item{
+      font-size:0;
+      text-align:center;
+  }
+
+  .menu-item:nth-child(1)::before{
+      content:"⭐";
+      font-size:18px;
+  }
+
+  .menu-item:nth-child(2)::before{
+      content:"👤";
+      font-size:18px;
+  }
+
+  .menu-item:nth-child(3)::before{
+      content:"⚙";
+      font-size:18px;
+  }
+
+  .logout-btn{
+      font-size:0;
+  }
+
+  .logout-btn::before{
+      content:"🚪";
+      font-size:18px;
+  }
 }
+
+/* ============================
+   Responsive - Phones (compact icon rail)
+   ============================ */
 @media (max-width: 480px) {
+
   .sidebar {
     width: 60px;
-    padding: 10px;
+    padding: 10px 8px;
+    align-items: center;
   }
 
   .sidebar-logo h2 {
@@ -169,61 +236,28 @@
 
   .new-analysis {
     padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
 
-.sidebar-logo h2{
-    font-size:18px;
-}
+  .history-item,
+  .menu-item {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
 
-.new-analysis{
-    font-size:0;
-}
-
-.new-analysis::before{
-    content:"+";
-    font-size:24px;
-}
-
-.section-title{
-    display:none;
-}
-
-.history-item{
-    font-size:0;
-}
-
-.history-item::before{
-    content:"📄";
-    font-size:18px;
-}
-
-.menu-item{
-    font-size:0;
-}
-
-.menu-item:nth-child(1)::before{
-    content:"⭐";
-    font-size:18px;
-}
-
-.menu-item:nth-child(2)::before{
-    content:"👤";
-    font-size:18px;
-}
-
-.menu-item:nth-child(3)::before{
-    content:"⚙";
-    font-size:18px;
-}
-
-.logout-btn{
-    font-size:0;
-}
-
-.logout-btn::before{
-    content:"🚪";
-    font-size:18px;
-}
-
+  .logout-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
 }

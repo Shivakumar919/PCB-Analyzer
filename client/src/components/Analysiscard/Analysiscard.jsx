@@ -6,7 +6,7 @@ export default function AnalysisCard({ analysis }) {
   return (
     <div className="analysis-card">
 
-      <div className="analysis-header">
+      <div className="analysis-card-header">
         <h2>🤖 AI PCB Analysis</h2>
         <span className="status">Completed</span>
       </div>

@@ -6,7 +6,9 @@ bottom:0;
 
 padding:20px 0;
 
+width:100%;
 
+box-sizing:border-box;
 
 }
 
@@ -78,4 +80,32 @@ transition:.3s;
 
 background:#00D4FF;
 
+}
+/* ============================
+   Phones
+   ============================ */
+@media (max-width: 480px) {
+  .chat-input-container {
+    padding: 12px 0;
+  }
+
+  .chat-input {
+    padding: 8px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .chat-input input {
+    font-size: 15px;
+    padding: 8px;
+    min-width: 0; /* prevents input from forcing overflow */
+  }
+
+  .chat-input button {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
 }
