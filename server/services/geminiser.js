@@ -1,30 +1,33 @@
-import fs from "fs";
-import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 
 export const analyzePCB = async (file) => {
   try {
-    const ai = new GoogleGenAI({
-      apiKey: process.env.GEMINI_API_KEY,
+    if (!process.env.OPENROUTER_API_KEY) {
+      throw new Error(
+        "OPENROUTER_API_KEY is missing. Check your .env file."
+      );
+    }
+
+    const client = new OpenAI({
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: process.env.OPENROUTER_API_KEY,
     });
 
-   const imageBytes = file.buffer;
+    const imageBase64 = file.buffer.toString("base64");
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: [
+    const completion = await client.chat.completions.create({
+      model: "google/gemma-3-27b-it:free", // You can change this later
+
+      messages: [
         {
-          parts: [
+          role: "user",
+          content: [
             {
-              inlineData: {
-                mimeType: file.mimetype,
-                data: imageBytes.toString("base64"),
-              },
-            },
-            {
+              type: "text",
               text: `
 Analyze the uploaded PCB image.
 
-Return ONLY valid JSON.
+Return ONLY valid JSON in this format:
 
 {
   "pcbType": "",
@@ -36,49 +39,41 @@ Return ONLY valid JSON.
 }
 
 Rules:
-- Return only JSON.
+- Return only valid JSON.
 - Do not use markdown.
-- Do not use \`\`\`json.
 - Do not add explanations.
 `,
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: `data:${file.mimetype};base64,${imageBase64}`,
+              },
             },
           ],
         },
       ],
     });
 
-    // Get Gemini response
-    const text = response.text;
+    let text = completion.choices[0].message.content;
 
-    // console.log("========== GEMINI RAW RESPONSE ==========");
-    // console.log(text);
-    // console.log("=========================================");
+    if (!text) {
+      throw new Error("No response received from OpenRouter.");
+    }
 
-    // Remove markdown if Gemini returns it
-    const cleanText = text
+    text = text
       .replace(/```json/gi, "")
       .replace(/```/g, "")
       .trim();
 
-    let result;
-
     try {
-      result = JSON.parse(cleanText);
+      return JSON.parse(text);
     } catch (err) {
-      console.error("JSON Parse Error:", err);
-
-      throw new Error(
-        "Gemini returned an invalid JSON response."
-      );
+      console.error("Response was:", text);
+      throw new Error("OpenRouter returned invalid JSON.");
     }
-
-    // console.log("========== PARSED RESULT ==========");
- 
-    // console.log("===================================");
-
-    return result;
   } catch (error) {
-    console.error("Gemini Error:", error);
+    console.error("OpenRouter Error:", error.message);
     throw error;
   }
 };
