@@ -1,33 +1,43 @@
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 
 export const analyzePCB = async (file) => {
   try {
-    if (!process.env.OPENROUTER_API_KEY) {
-      throw new Error(
-        "OPENROUTER_API_KEY is missing. Check your .env file."
-      );
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY is missing.");
     }
 
-    const client = new OpenAI({
-      baseURL: "https://openrouter.ai/api/v1",
-      apiKey: process.env.OPENROUTER_API_KEY,
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const imageBase64 = file.buffer.toString("base64");
+    const imageBytes = file.buffer;
 
-    const completion = await client.chat.completions.create({
-      model: "google/gemma-3-27b-it:free", // You can change this later
-
-      messages: [
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: [
         {
-          role: "user",
-          content: [
+          parts: [
             {
-              type: "text",
+              inlineData: {
+                mimeType: file.mimetype,
+                data: imageBytes.toString("base64"),
+              },
+            },
+            {
               text: `
-Analyze the uploaded PCB image.
+You are an expert PCB inspection AI.
 
-Return ONLY valid JSON in this format:
+Analyze the uploaded PCB image carefully.
+
+Identify:
+- PCB type
+- Components present
+- Missing components
+- Faults or damaged areas
+- Suggestions for repair
+- Confidence score (0-100%)
+
+Return ONLY valid JSON.
 
 {
   "pcbType": "",
@@ -39,26 +49,20 @@ Return ONLY valid JSON in this format:
 }
 
 Rules:
-- Return only valid JSON.
+- Return only JSON.
 - Do not use markdown.
 - Do not add explanations.
 `,
-            },
-            {
-              type: "image_url",
-              image_url: {
-                url: `data:${file.mimetype};base64,${imageBase64}`,
-              },
             },
           ],
         },
       ],
     });
 
-    let text = completion.choices[0].message.content;
+    let text = response.text;
 
     if (!text) {
-      throw new Error("No response received from OpenRouter.");
+      throw new Error("No response received from Gemini.");
     }
 
     text = text
@@ -66,14 +70,20 @@ Rules:
       .replace(/```/g, "")
       .trim();
 
-    try {
-      return JSON.parse(text);
-    } catch (err) {
-      console.error("Response was:", text);
-      throw new Error("OpenRouter returned invalid JSON.");
+    const start = text.indexOf("{");
+    const end = text.lastIndexOf("}");
+
+    if (start !== -1 && end !== -1) {
+      text = text.substring(start, end + 1);
     }
+
+    console.log("Gemini Response:");
+    console.log(text);
+
+    return JSON.parse(text);
+
   } catch (error) {
-    console.error("OpenRouter Error:", error.message);
-    throw error;
+    console.error("Gemini Error:", error);
+    throw new Error(error.message);
   }
 };
